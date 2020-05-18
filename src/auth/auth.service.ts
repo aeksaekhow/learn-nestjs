@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger, UnauthorizedException } from '@nestjs/common';
 import UserRepository from './user.repository';
 import { InjectRepository } from '@nestjs/typeorm';
 import AuthCredentialsDto from './dto/auth-credentials.dto';
@@ -8,6 +8,8 @@ import AuthSigninResponseDto from './dto/auth-signin-response.dto';
 
 @Injectable()
 export class AuthService {
+
+  private logger = new Logger('AuthService')
 
   constructor(
     @InjectRepository(UserRepository)
@@ -28,6 +30,7 @@ export class AuthService {
       username: userEntity.username
     }
     const accessToken = this.jwtService.sign(payload)
+    this.logger.debug(`Generated JWT token with payload ${JSON.stringify(payload)}`)
 
     return {
       accessToken
