@@ -1,6 +1,5 @@
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import * as bcrypt from 'bcrypt';
-import has = Reflect.has;
 import TaskEntity from '../tasks/task.entity';
 
 @Entity('user')

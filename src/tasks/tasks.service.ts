@@ -40,10 +40,9 @@ export class TasksService {
 
   async updateTaskStatus(id: number, status: TaskStatus, userEntity: UserEntity): Promise<TaskEntity> {
     const task = await this.getTaskById(id, userEntity)
-    if (!task)throw new NotFoundException(`Task id '${id}' not found`)
     task.status = status
-    const savedTask = await task.save()
-    return savedTask
+    await task.save()
+    return task
   }
 
 }
