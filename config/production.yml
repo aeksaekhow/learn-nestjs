@@ -1,5 +1,0 @@
-server:
-  origin: https://aeksaekhow-nestjs-task-management-frontend.s3-ap-southeast-1.amazonaws.com
-
-db:
-  synchronize: false
